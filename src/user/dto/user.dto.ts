@@ -1,6 +1,6 @@
 import { IsString, IsEmail, IsNotEmpty } from "class-validator";
 
-export class UserDTO extends Document{
+export class UserDTO {
     @IsNotEmpty()
     @IsString()
    readonly name: string;
