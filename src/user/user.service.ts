@@ -9,9 +9,16 @@ import { USER } from 'src/common/models/models';
 @Injectable()
 export class UserService {
 
-    constructor(@InjectModel(USER.name)private readonly model:Model<IUser>){
-        
+    constructor(@InjectModel(USER.name)private readonly model:Model<IUser>){}
+
+    async checkPassword (password: string, passwordDB: string):Promise<boolean>{
+        return await bcrypt.compare(password, passwordDB);
     }
+
+    async findByUsername(username:string){
+        return await this.model.findOne({username})
+    }
+
     async hashPasword(password:string):Promise<string>{
         const salt = await bcrypt.genSalt(10);
         return await bcrypt.hash(password,salt);
