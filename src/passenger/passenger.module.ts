@@ -17,6 +17,7 @@ import { PassengerSchema } from './schema/passenger.schema';
     ]),
   ],
   controllers: [PassengerController],
-  providers: [PassengerService]
+  providers: [PassengerService],
+  exports: [PassengerService],
 })
 export class PassengerModule {}
